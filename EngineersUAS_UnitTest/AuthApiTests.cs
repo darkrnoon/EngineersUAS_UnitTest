@@ -19,6 +19,7 @@ namespace EngineersUAS_UnitTest
         [TestMethod]
         public void Test_Register_Success()
         {
+            // Проверяет успешную регистрацию нового пользователя, когда переданы все необходимые параметры.
             var request = new RestRequest("/register", Method.Post);
             request.AddJsonBody(new
             {
@@ -39,6 +40,7 @@ namespace EngineersUAS_UnitTest
         [TestMethod]
         public void Test_Register_MissingFields()
         {
+            // Проверяет, что запрос возвращает ошибку 400 (BadRequest), если отсутствуют обязательные поля, такие как "password".
             var request = new RestRequest("/register", Method.Post);
             request.AddJsonBody(new { email = "test@example.com" });
 
@@ -51,6 +53,7 @@ namespace EngineersUAS_UnitTest
         [TestMethod]
         public void Test_Login_Success()
         {
+            // Проверяет успешный вход в систему, когда переданы корректные учетные данные.
             var request = new RestRequest("/login", Method.Post);
             request.AddJsonBody(new { email = "test@example.com", password = "password123" });
 
@@ -63,6 +66,7 @@ namespace EngineersUAS_UnitTest
         [TestMethod]
         public void Test_Login_InvalidCredentials()
         {
+            // Проверяет, что запрос возвращает ошибку 401 (Unauthorized), если указаны неверные учетные данные.
             var request = new RestRequest("/login", Method.Post);
             request.AddJsonBody(new { email = "wrong@example.com", password = "wrongpassword" });
 
@@ -75,6 +79,7 @@ namespace EngineersUAS_UnitTest
         [TestMethod]
         public void Test_Login_MissingFields()
         {
+            // Проверяет, что запрос возвращает ошибку 400 (BadRequest), если отсутствуют обязательные поля, такие как "password".
             var request = new RestRequest("/login", Method.Post);
             request.AddJsonBody(new { email = "test@example.com" });
 
